@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  node:
+    build:
+      context: ./docker/local/node
+      dockerfile: ./Dockerfile
+    ports:
+    - "8080:8080"
+    env_file:
+    - ./.env
+    volumes:
+    - ./src:/app:cached
+    container_name: 'test1_node'
+    restart: "no"
+    working_dir: /app/
+    command: ["bash", "/app/watch.sh"]
